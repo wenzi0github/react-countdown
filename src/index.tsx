@@ -35,9 +35,9 @@ export default class CountDown extends Component<CountDownProps> {
             const now = Date.now();
             const progress = Math.max(this.state.endTime - now, 0);
             let _progress = '';
-            if (typeof format==='string') {
+            if (typeof format === 'string') {
                 _progress = this.formatTime(progress, format);
-            } else {
+            } else if (typeof format === 'function') {
                 _progress = format.call(null, progress);
             }
 
@@ -93,13 +93,10 @@ export default class CountDown extends Component<CountDownProps> {
             } else {
                 _endTime = endTime;
             }
-            if (_endTime < now) {
-                // 若结束时间本来就小于当前的时间，直接结束
-                this.stop();
-            } else {
-                this.setState({ endTime: _endTime });
-                this.start();
-            }
+            // 为防止结束时间比当前时间早，没有格式
+            // 无论当前是否已结束，均执行一次流程
+            this.setState({ endTime: _endTime });
+            this.start();
         }
     }
 
