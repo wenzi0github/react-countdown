@@ -4,6 +4,8 @@
 
 这是基于抢金达人活动中使用的倒计时总结出来的。
 
+这里还有对应的博客总结：[腾讯抢金达人中倒计时的实现与改进](https://www.xiabingbao.com/post/react/answer-countdown.html)
+
 简单的使用：
 
 ```jsx
